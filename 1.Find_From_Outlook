@@ -1,0 +1,27 @@
+Sub SearchByEmailID()
+    Dim olApp As Outlook.Application
+    Dim ns As Outlook.Namespace
+    Dim sSearchMail As String
+    Dim oSearchFolder As Outlook.Folder
+    Dim sSearchCriteria As String
+    
+    Dim strFilter As String
+    Dim oContact  As Outlook.ContactItem
+    Dim iFile As Integer
+    Dim sInp As String
+    
+    Set olApp = New Outlook.Application
+    Set ns = olApp.GetNamespace("MAPI")
+    
+    sSearchMail = "thibichsonha.vo@ttigroup.com.vn" 'Change EmailID here.
+     
+    Set oSearchFolder = ns.GetDefaultFolder(olFolderInbox)
+    Set olApp.ActiveExplorer.CurrentFolder = oSearchFolder
+    
+    sSearchCriteria = "from: " & sSearchMail
+    olApp.ActiveExplorer.Search sSearchCriteria, olSearchScopeAllFolders
+    
+    Set olApp = Nothing
+End Sub
+
+'https://www.mycodetricks.com/2022/01/outlook-emails-filter-by-email-id.html
